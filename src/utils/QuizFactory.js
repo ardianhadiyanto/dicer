@@ -8,7 +8,6 @@ class QuizFactory {
 
     const wordDefinitions = [];
     for (let i = 0; i < randomWords.length; i++) {
-      console.log(randomWords[i]);
       const definition = await this.wordnikApi.getDefinition(randomWords[i]);
       wordDefinitions.push({ word: randomWords[i], definition: definition });
     }
