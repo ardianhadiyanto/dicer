@@ -1,24 +1,26 @@
 const axios = require('axios');
 
 class WordnikApi {
-  constructor() {
+  constructor(apiKey) {
     this.baseUrl = 'https://api.wordnik.com/v4';
-    this.apiKey = 'c23b746d074135dc9500c0a61300a3cb7647e53ec2b9b658e'; // used by wordnik
+    this.apiKey = apiKey;
     // this.apiKey = 't9jh764sbypq25u8cvonu0rd4rhxycw3dxr8ngzbgm1qmtog7';
   }
 
   async getRandomWords(limit) {
     const url = `${this.baseUrl}/words.json/randomWords?hasDictionaryDef=true&limit=${limit}&api_key=${this.apiKey}`;
-    let randomWords; 
+    let randomWordsResponse; 
 
     try {
       const response = await axios.get(url);
-      randomWords = response.data;
+      randomWordsResponse = response.data;
     } catch (error) {
       console.error(error);
     }
 
-    return randomWords;
+    return randomWordsResponse.map(response => {
+      return response.word;
+    });
   }
 
   async getDefinition(word) {
@@ -27,7 +29,7 @@ class WordnikApi {
 
     try {
       const response = await axios.get(url);
-      definition = response.data;
+      definition = response.data[0].text;
     } catch (error) {
       console.error(error);
     }
