@@ -3,10 +3,15 @@ import Question from './Question';
 
 class Dicer extends React.Component {
   render() {
+    const questions = this.props.quiz.map(question => { 
+      const questionComponent = <Question number={question.number} word={question.word} answer={question.answer} choices={question.choices}/>
+      return <li key={question.number}>{questionComponent}</li>
+    });
+
     return (
-      <div className="dicer">
-        {this.props.quiz.map(q => { return <Question number={q.number} word={q.word} answer={q.answer} choices={q.choices}/> })}
-      </div>
+      <ol className="dicer">
+        {questions}
+      </ol>
     );
   }
 }

@@ -9,7 +9,7 @@ class Question extends React.Component {
 
     return (
       <div className="question">
-        {this.props.number}. {this.props.word}
+        {this.props.word}
         <Choice choice={first} question={number}/>
         <Choice choice={second} question={number}/>
       </div>
