@@ -11,16 +11,15 @@ class Dicer extends React.Component {
   }
 
   onQuestionAnswered(number, selected) {
-    this.selectedAnswers[number] = selected;
+    this.selectedAnswers[number] = parseInt(selected);
   }
 
   submit() {
     let correctAnswers = 0;
-    // alert(this.props.quiz.length);
+    console.log(this.selectedAnswers);
     for(let i = 0; i < this.props.quiz.length; i++) {
-      // alert(`selected answer: ${this.selectedAnswers[i]} correct answer: ${this.props.quiz[i].answer}`);
-      if (this.selectedAnswers[i] == this.props.quiz[i].answer) {
-        // alert('yeiyy');
+      const answerIndex = i + 1;
+      if (parseInt(this.selectedAnswers[answerIndex]) === parseInt(this.props.quiz[i].answer)) {
         correctAnswers++;
       }
     }
