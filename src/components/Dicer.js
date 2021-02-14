@@ -8,15 +8,13 @@ class Dicer extends React.Component {
     super(props);
     this.selectedAnswers = new Map();
     this.state = { correctAnswers: 0 };
-    this.onQuestionAnswered = this.onQuestionAnswered.bind(this);
-    this.submit = this.submit.bind(this);
   }
 
-  onQuestionAnswered(number, selected) {
+  onQuestionAnswered = (number, selected) => {
     this.selectedAnswers[number] = parseInt(selected);
   }
 
-  submit() {
+  submit = () => {
     let correctAnswers = 0;
     for(let i = 0; i < this.props.quiz.length; i++) {
       const answerIndex = i + 1;

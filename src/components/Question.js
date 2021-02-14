@@ -5,10 +5,9 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.selectedChoice = { selectedChoice: null };
-    this.updateSelectedChoice = this.updateSelectedChoice.bind(this);
   }
 
-  updateSelectedChoice(choice) {
+  updateSelectedChoice = (choice) => {
     this.setState({ selectedChoice: choice });
     this.props.onQuestionAnswered(this.props.number, choice);
   }
