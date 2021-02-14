@@ -2,6 +2,17 @@ import React from 'react';
 import Choice from './Choice';
 
 class Question extends React.Component {
+  constructor(props) {
+    super(props);
+    this.selectedChoice = { selectedChoice: null };
+    this.updateSelectedChoice = this.updateSelectedChoice.bind(this);
+  }
+
+  updateSelectedChoice(choice) {
+    this.setState({ selectedChoice: choice });
+    this.props.onQuestionAnswered(this.props.number, choice);
+  }
+
   render() {
     const number = this.props.number;
     const first =  this.props.choices[0];
@@ -10,8 +21,8 @@ class Question extends React.Component {
     return (
       <div className="question">
         {this.props.word}
-        <Choice choice={first} question={number}/>
-        <Choice choice={second} question={number}/>
+        <Choice id="0" choice={first} question={number} onSelected={this.updateSelectedChoice}/>
+        <Choice id="1" choice={second} question={number} onSelected={this.updateSelectedChoice}/>
       </div>
     );
   }

@@ -1,10 +1,19 @@
 import React from 'react';
 
 class Choice extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSelect = this.handleSelect.bind(this);
+  }
+
+  handleSelect(e) {
+    this.props.onSelected(this.props.id);
+  }
+
   render() {
     return (
-      <div className="choice">
-        <input type="radio" value={this.props.choice} name={this.props.question}/>{this.props.choice}
+      <div>
+        <input className="choice" type="radio" id={this.props.id} value={this.props.choice} name={this.props.question} onClick={this.handleSelect}/>{this.props.choice}
       </div>
     );
   }
