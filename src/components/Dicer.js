@@ -1,11 +1,13 @@
 import React from 'react';
 import SubmitButton from './SubmitButton'
 import Question from './Question';
+import Score from './Score';
 
 class Dicer extends React.Component {
   constructor(props) {
     super(props);
     this.selectedAnswers = new Map();
+    this.state = { correctAnswers: 0 };
     this.onQuestionAnswered = this.onQuestionAnswered.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -23,7 +25,7 @@ class Dicer extends React.Component {
         correctAnswers++;
       }
     }
-    alert(correctAnswers);
+    this.setState({ correctAnswers: correctAnswers });
   }
 
   render() {
@@ -44,6 +46,7 @@ class Dicer extends React.Component {
         {questions}
         </ol>
         <SubmitButton onSubmit={this.submit}/>
+        <Score score={this.state.correctAnswers} total={questions.length}/>
       </div>
     );
   }
