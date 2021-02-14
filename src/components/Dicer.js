@@ -18,7 +18,6 @@ class Dicer extends React.Component {
 
   submit() {
     let correctAnswers = 0;
-    console.log(this.selectedAnswers);
     for(let i = 0; i < this.props.quiz.length; i++) {
       const answerIndex = i + 1;
       if (parseInt(this.selectedAnswers[answerIndex]) === parseInt(this.props.quiz[i].answer)) {
